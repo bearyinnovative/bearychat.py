@@ -1,6 +1,8 @@
 Python SDK for BearyChat
 ====
 
+[![Build Status](https://travis-ci.org/bearyinnovative/pybearychat.svg)](https://travis-ci.org/bearyinnovative/pybearychat)
+
 ## Requirements
 - `python`: 2.7/3.5
 - [requests](https://github.com/kennethreitz/requests)

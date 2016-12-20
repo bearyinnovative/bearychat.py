@@ -10,7 +10,7 @@ before_install:
   - pip install pytest
 install:
   - python setup.py install
-script: pytest tests
+script: py.test tests
 notifications:
   webhooks:
     secure: "W4RXOee3gWPy6Mbz3CJ2hfTaiFpM4sYQUwTEocf4tyyUaWf50m/7heLRr0GiqqIXUw/nzhWFoFw75I9apSU+Ee9WSUDs/ArsfD+wycG501oTr+hzWG9bgjY9pZYXA2mG//2/y/DBalsaCCDVvMZ07Hu4e+mEUSUo1zR00oMOSoj7n2L96Clq61zQt7gMv1LivdFlSv9EGWYtYyqrAkd2i3BahwGJJGfa97vu728aUH6CVhDKuDIzRxdzbZDXuyApH3KectqcOOvBTXkOZ+VH8MT5bLbDk1Lr5rFmGgha+ck56aS+iF3I708KJGHzn8HynUiTctb2UVSLaJah3WOCPFOVgzCt3YL4zDUeoVECrOJ6WLINyx+1M7xXx++lhJ8n0fLFfR73tOAlj5P4mt48f9uk/970foO4cZP33bWT+vzc1dUpawg/iTYriZaH8PS2UMHCXnBIsI+Vn2a10lhf2ZIHlD8klan8qq3qbmBFtgjGfsNbCRWjw3wYxTYFDRzi1j4nX4OZZP4ylOqUWFJH9SeR93LF+caf5ghgBsc7KPfmBcRY0c+rVfxcAjDLAHKTzyyRZTkBPKwwdaQE+mhIj5AH4SD2mmX83OWsIutWzmu4EHRJYPRk9u01vNKP31t6mco0SN1XqBVtxzmvZXNg0znRYoJdwxM/N0TADiqjrvA="

@@ -1,10 +1,9 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-from enum import Enum
 import json
 
 
-class RTMMessageType(Enum):
+class RTMMessageType(object):
     """types of Message of Real Time Message
     """
     Unknown = "unknown"
@@ -19,7 +18,7 @@ class RTMMessageType(Enum):
     UpdateUserConnection = "update_user_connection"
 
 
-class RTMMessage:
+class RTMMessage(object):
     """Message of Real Time Message
     """
     def __init__(self, data):
@@ -54,10 +53,10 @@ class RTMMessage:
         """
         data = {"text": text, "vchannel_id": self["vchannel_id"]}
         if self.is_p2p():
-            data["type"] = RTMMessageType.P2PMessage.value
+            data["type"] = RTMMessageType.P2PMessage
             data["to_uid"] = self["uid"]
         else:
-            data["type"] = RTMMessageType.ChannelMessage.value
+            data["type"] = RTMMessageType.ChannelMessage
             data["channel_id"] = self["channel_id"]
         return RTMMessage(data)
 
@@ -80,8 +79,8 @@ class RTMMessage:
             True if current message is p2p message
         """
         t = self["type"]
-        return (t == RTMMessageType.P2PMessage.value or
-                t == RTMMessageType.P2PTyping.value)
+        return (t == RTMMessageType.P2PMessage or
+                t == RTMMessageType.P2PTyping)
 
     def is_chat_message(self):
         """
@@ -89,8 +88,8 @@ class RTMMessage:
             True if current message is chatting message
         """
         t = self["type"]
-        return (t == RTMMessageType.P2PMessage.value or
-                t == RTMMessageType.ChannelMessage.value)
+        return (t == RTMMessageType.P2PMessage or
+                t == RTMMessageType.ChannelMessage)
 
     def is_from(self, user):
         """Checks if current message is sent by user

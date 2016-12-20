@@ -60,7 +60,7 @@ else:
     from thread import start_new_thread
 
 
-class RTMLoop:
+class RTMLoop(object):
     """Real Time Message loop
 
     self._errors(Queue): contains error message(dict("result", "msg")),
@@ -145,7 +145,7 @@ class RTMLoop:
     def ping(self):
         """Sends ping message
         """
-        self.send(RTMMessage({"type": RTMMessageType.Ping.value}))
+        self.send(RTMMessage({"type": RTMMessageType.Ping}))
 
     def gen_call_id(self):
         """Generates a call_id

@@ -5,7 +5,7 @@ from .rtm_client_service import RTMChannel, RTMCurrentTeam, RTMUser
 from .model import User
 
 
-class RTMResponse:
+class RTMResponse(object):
     """Response of Real Time Message
 
     Attributes:
@@ -30,7 +30,7 @@ class RTMResponse:
         return not self.is_ok()
 
 
-class RTMClient:
+class RTMClient(object):
     """Real Time Message client
 
     Attributes:

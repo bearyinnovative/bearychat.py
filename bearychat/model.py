@@ -1,6 +1,5 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-from enum import Enum
 
 
 class Team(dict):
@@ -16,20 +15,20 @@ class Team(dict):
         return self._data[name]
 
 
-class UserType(Enum):
+class UserType(object):
     Normal = "normal"
     Assistant = "assistant"
     Hubot = "hubot"
 
 
-class UserRole(Enum):
+class UserRole(object):
     Owner = "owner"
     Admin = "admin"
     Normal = "normal"
     Visitor = "visitor"
 
 
-class User:
+class User(object):
     def __init__(self, data):
         if not isinstance(data, dict):
             raise TypeError
@@ -49,7 +48,7 @@ class User:
             "role"] != UserRole.Visitor
 
 
-class Channel:
+class Channel(object):
     def __init__(self, data):
         if not isinstance(data, dict):
             raise TypeError

@@ -3,7 +3,7 @@
 from .model import Team, Channel, User
 
 
-class RTMService:
+class RTMService(object):
     """service of Real Time Message
     """
 

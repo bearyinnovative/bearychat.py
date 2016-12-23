@@ -2,12 +2,20 @@ Python SDK for BearyChat
 ====
 
 [![Build Status](https://travis-ci.org/bearyinnovative/pybearychat.svg)](https://travis-ci.org/bearyinnovative/pybearychat)
+![Development Status](https://img.shields.io/badge/status-WIP-yellow.svg?style=flat-square)
 
 ## Requirements
+
 - `python`: 2.7/3.5
 - [requests](https://github.com/kennethreitz/requests)
 
 ## Installation
+
+```bash
+$ pip install bearychat
+```
+
+or for development:
 
 ```bash
 $ git clone https://github.com/bearyinnovative/pybearychat.git
@@ -247,4 +255,5 @@ while True:
 ```
 
 ## License
-> MIT
+
+MIT

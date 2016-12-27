@@ -1,65 +1,10 @@
-Python SDK for BearyChat
-====
-
-[![Build Status](https://travis-ci.org/bearyinnovative/pybearychat.svg)](https://travis-ci.org/bearyinnovative/pybearychat)
-![Development Status](https://img.shields.io/badge/status-WIP-yellow.svg?style=flat-square)
-
-## Requirements
-
-- `python`: 2.7/3.5
-- [requests](https://github.com/kennethreitz/requests)
-
-## Installation
-
-```bash
-$ pip install bearychat
-```
-
-or for development:
-
-```bash
-$ git clone https://github.com/bearyinnovative/pybearychat.git
-$ cd pybearychat
-$ python setup.py install
-```
-
-## Examples
-
-### Incoming
-
-```python
-
-from bearychat import incoming
-
-
-def main():
-    data = {
-        "text": "hello, **world**",
-        "markdown": True,
-        "noification": "Hello, BearyChat in Notification",
-        "channel": "testing"
-    }
-
-    resp = incoming.send(
-        "https://hook.bearychat.com/****/incoming/*****",
-        data)
-
-
-if __name__ == "__main__":
-    main()
-```
-
-### Real Time Message
-
-> this repo **DOESN't** provide rtm loop, you should implement it
-
-#### RTM loop example
-```python
-import threading
-import websocket
-import json
-import time
 import sys
+import time
+import json
+import threading
+
+import websocket
+
 from bearychat import RTMMessage, RTMMessageType
 
 if sys.version_info > (3, ):
@@ -73,17 +18,15 @@ else:
 class RTMLoop(object):
     """Real Time Message loop
 
-    self._errors(Queue): contains error message(dict("result", "msg")),
-                         looks self._set_error()
-    self._inbox(Queue): contains RTMMessage
-    self._worker(threading.Thread): a thread for running the loop
+    _errors(Queue): contains error message(dict("result", "msg")),
+                    looks self._set_error()
+    _inbox(Queue): contains RTMMessage
+    _worker(threading.Thread): a thread for running the loop
+
+    :param ws_host: websocket host
     """
 
     def __init__(self, ws_host):
-        """
-        Args:
-            ws_host(str): websocket host
-        """
         self._call_id = 0
         self._inbox = Queue()
         self._errors = Queue()
@@ -96,9 +39,7 @@ class RTMLoop(object):
         self._worker = threading.Thread(target=self._ws.run_forever)
 
     def on_open(self, ws):
-        """Websocket on_open event handler
-        """
-
+        """Websocket on_open event handler"""
         def keep_alive(interval):
             while True:
                 time.sleep(interval)
@@ -108,6 +49,7 @@ class RTMLoop(object):
 
     def on_message(self, ws, message):
         """Websocket on_message event handler
+
         Saves message as RTMMessage in self._inbox
         """
         try:
@@ -119,30 +61,28 @@ class RTMLoop(object):
 
     def on_error(self, ws, error):
         """Websocket on_error event handler
+
         Saves error message in self._errors
         """
         self._set_error(error, "read socket failed")
 
     def on_close(self, ws):
-        """Websocket on_close event handler
-        """
+        """Websocket on_close event handler"""
         self._set_error("closed", "websocket closed")
 
     def _set_error(self, result, msg):
         """Puts a error to self._errors
 
-        Args:
-            result(mix): received data
-            msg(str): message
+        :param result: received data
+        :param msg: message
         """
         self._errors.put({"result": result, "msg": msg})
 
     def start(self, keep_alive_interval=2):
         """Starts the main loop
 
-        Args:
-            keep_alive_interval(int): the interval(second) of sending keep
-                                      alive message
+        :param keep_alive_interval: the interval(second) of sending keep
+                                    alive message
         """
         self.keep_alive_interval = keep_alive_interval
         self._worker.start()
@@ -170,11 +110,10 @@ class RTMLoop(object):
         """Sends a RTMMessage
         Should be called after starting the loop
 
-        Args:
-            message(RTMMessage): the sending message
-
         Raises:
             WebSocketConnectionClosedException: if the loop is closed
+
+        :param message: the sending message
         """
         if "call_id" not in message:
             message["call_id"] = self.gen_call_id()
@@ -184,13 +123,13 @@ class RTMLoop(object):
     def get_message(self, block=False, timeout=None):
         """Removes and returns a RTMMessage from self._inbox
 
-        Args:
-            block(bool): if True block until a RTMMessage is available,
-                         else it will return None when self._inbox is empty
-            timeout(int): it blocks at most timeout seconds
-
         Returns:
             RTMMessage if self._inbox is not empty, else None
+
+        :param block: if True block until a RTMMessage is available,
+                      else it will return None when self._inbox is empty
+        :param timeout: it blocks at most timeout seconds
+
         """
         try:
             message = self._inbox.get(block=block, timeout=timeout)
@@ -201,59 +140,15 @@ class RTMLoop(object):
     def get_error(self, block=False, timeout=None):
         """Removes and returns an error from self._errors
 
-        Args:
-            block(bool): if True block until an error is available,
-                         else it will return None when self._erros is empty
-            timeout(int): it blocks at most timeout seconds
-
         Returns:
             error if inbox is not empty, else None
+
+        :param block: if True block until an error is available,
+                      else it will return None when self._erros is empty
+        :param timeout: it blocks at most timeout seconds
         """
         try:
             error = self._errors.get(block=block, timeout=timeout)
             return error
         except:
             return None
-```
-
-```python
-from bearychat import RTMClient
-
-import RTMLoop  # import your loop
-
-
-client = RTMClient("rtm_token", "http://rtm.bearychat.com")  # init the rtm client
-
-resp = client.start()  # get rtm user and ws_host
-
-user = resp["user"]
-ws_host = resp["ws_host"]
-
-loop = RTMLoop(ws_host)  # init the loop
-loop.start()
-time.sleep(2)
-while True:
-    error = loop.get_error()
-
-    if error:
-        print(error)
-        continue
-
-    message = loop.get_message(True, 5)
-
-    if not message or not message.is_chat_message():
-        continue
-    try:
-        print("rtm loop received {0} from {1}".format(message["text"],
-                                                      message["uid"]))
-    except:
-        continue
-
-    if message.is_from(user):
-        continue
-    loop.send(message.refer("Pardon?"))
-```
-
-## License
-
-MIT

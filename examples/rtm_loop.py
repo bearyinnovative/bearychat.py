@@ -23,7 +23,8 @@ class RTMLoop(object):
     _inbox(Queue): contains RTMMessage
     _worker(threading.Thread): a thread for running the loop
 
-    :param ws_host: websocket host
+    Args:
+        ws_host(str): websocket host
     """
 
     def __init__(self, ws_host):
@@ -73,16 +74,18 @@ class RTMLoop(object):
     def _set_error(self, result, msg):
         """Puts a error to self._errors
 
-        :param result: received data
-        :param msg: message
+        Args:
+            result(mix): received data
+            msg(str): message
         """
         self._errors.put({"result": result, "msg": msg})
 
     def start(self, keep_alive_interval=2):
         """Starts the main loop
 
-        :param keep_alive_interval: the interval(second) of sending keep
-                                    alive message
+        Args:
+            keep_alive_interval(int): the interval(second) of sending keep
+                                      alive message
         """
         self.keep_alive_interval = keep_alive_interval
         self._worker.start()
@@ -110,10 +113,11 @@ class RTMLoop(object):
         """Sends a RTMMessage
         Should be called after starting the loop
 
+        Args:
+            message(RTMMessage): the sending message
+
         Raises:
             WebSocketConnectionClosedException: if the loop is closed
-
-        :param message: the sending message
         """
         if "call_id" not in message:
             message["call_id"] = self.gen_call_id()
@@ -123,13 +127,13 @@ class RTMLoop(object):
     def get_message(self, block=False, timeout=None):
         """Removes and returns a RTMMessage from self._inbox
 
+        Args:
+            block(bool): if True block until a RTMMessage is available,
+                         else it will return None when self._inbox is empty
+            timeout(int): it blocks at most timeout seconds
+
         Returns:
             RTMMessage if self._inbox is not empty, else None
-
-        :param block: if True block until a RTMMessage is available,
-                      else it will return None when self._inbox is empty
-        :param timeout: it blocks at most timeout seconds
-
         """
         try:
             message = self._inbox.get(block=block, timeout=timeout)
@@ -140,12 +144,13 @@ class RTMLoop(object):
     def get_error(self, block=False, timeout=None):
         """Removes and returns an error from self._errors
 
+        Args:
+            block(bool): if True block until a RTMMessage is available,
+                         else it will return None when self._inbox is empty
+            timeout(int): it blocks at most timeout seconds
+
         Returns:
             error if inbox is not empty, else None
-
-        :param block: if True block until an error is available,
-                      else it will return None when self._erros is empty
-        :param timeout: it blocks at most timeout seconds
         """
         try:
             error = self._errors.get(block=block, timeout=timeout)

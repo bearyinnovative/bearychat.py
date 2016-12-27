@@ -7,9 +7,6 @@ CURRENT_DIR = dirname(realpath(__file__))
 with open(join(CURRENT_DIR, "README.rst")) as long_description_file:
     long_description = long_description_file.read()
 
-with open(join(CURRENT_DIR, "requirements.txt")) as dependencies_file:
-    dependencies = dependencies_file.read()
-
 setup(
     name="bearychat",
     version="0.1.0",
@@ -19,9 +16,11 @@ setup(
     long_description=long_description,
     packages=find_packages(exclude=["docs"]),
     platforms="any",
-    install_requires=dependencies,
+    install_requires=[
+        "requests>=2.2.1",
+    ],
     classifiers=[
-        "Development Status :: 5 - Production/Stable",
+        "Development Status :: 4 - Beta",
         "Intended Audience :: Developers",
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",

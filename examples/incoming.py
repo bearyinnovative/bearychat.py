@@ -8,7 +8,7 @@ def main():
     data = {
         "text": "hello, **world**",
         "markdown": True,
-        "noification": "Hello, BearyChat in Notification",
+        "notification": "Hello, BearyChat in Notification",
         "channel": "testing"
     }
 

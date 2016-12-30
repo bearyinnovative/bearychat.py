@@ -5,6 +5,8 @@ Python SDK for BearyChat
 |Build Status|
 |Development Status|
 
+`Documentation <http://bearychat.readthedocs.io/en/latest/?badge=latest>`_
+
 Requirements
 ------------
 

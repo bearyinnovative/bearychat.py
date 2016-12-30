@@ -3,21 +3,21 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Bearychat.py
+BearyChat.py
 ============
 
-Bearychat.py is a SDK for `Bearychat <https://bearychat.com>`_.
+BearyChat.py is a SDK for `BearyChat <https://bearychat.com>`_.
 
 Quick links
 -----------
 
-* `Source(github) <https://github.com/bearyinnovative/bearychat.py>`_
-* `Bearychat Integrations <https://bearychat.com/integrations>`_
+* `Source(GitHub) <https://github.com/bearyinnovative/bearychat.py>`_
+* `BearyChat Integrations <https://bearychat.com/integrations>`_
 
 Hello, world
 ------------
 
-Here is a simple "Hello, world" example app for Bearychat `Incoming <https://bearychat.com/integrations/incoming>`_::
+Here is a simple "Hello, world" example app for BearyChat `Incoming <https://bearychat.com/integrations/incoming>`_::
 
   from bearychat import incoming
 
@@ -47,10 +47,10 @@ Installation
 
   pip install bearychat
 
-Bearychat.py is listed in `PyPi <https://pypi.python.org/pypi/bearychat>`_, and
+BearyChat.py is listed in `PyPI <https://pypi.python.org/pypi/bearychat>`_, and
 can be installed with ``pip`` or ``easy_install``.
   
-**Prerequisites**: Bearychat.py runs on Python 2.6+ and Python 3.3+(`more <https://travis-ci.org/bearyinnovative/bearychat.py>`_). And HTTP library `request <https://github.com/kennethreitz/requests>`_ is required.
+**Prerequisites**: BearyChat.py runs on Python 2.6+ and Python 3.3+(`more <https://travis-ci.org/bearyinnovative/bearychat.py>`_). And HTTP library `request <https://github.com/kennethreitz/requests>`_ is required.
 
 Documentation
 -------------

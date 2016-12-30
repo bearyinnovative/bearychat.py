@@ -4,7 +4,7 @@ Python SDK for BearyChat
 |Build Status|
 |Development Status|
 
-`Documentation <https://bearyinnovative.github.com/bearychat.py/doc/build/html>`_
+`Documentation <http://bearychat.readthedocs.io/en/latest/?badge=latest>`_
 
 Requirements
 ------------

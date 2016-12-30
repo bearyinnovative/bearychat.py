@@ -9,7 +9,7 @@ Provides handful helpers for rtm message parsing.
 RTM Loop
 ~~~~~~~~
 
-To achive more flexible usage, bearychat.py won't provide any implementations for rtm.loop. You can use examples/rtm_loop below as implementation reference.
+To achive more flexible usage, BearyChat.py won't provide any implementations for rtm.loop. You can use examples/rtm_loop below as implementation reference.
 
 Basically, rtm.loop contains 3 stages:
 

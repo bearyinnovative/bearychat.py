@@ -1,7 +1,7 @@
 Incoming
 --------
 
-`Incoming <https://bearychat.com/integrations/incoming>`_ is an integration of bearychat.
+`Incoming <https://bearychat.com/integrations/incoming>`_ is an integration of BearyChat.
 
 Examples
 ~~~~~~~~

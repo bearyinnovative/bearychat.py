@@ -6,13 +6,14 @@ python:
   - "3.5"
   - "pypy"
 before_install:
-  - pip install pytest
+  - pip install pytest pytest-cov
 install:
   - python setup.py install
   - pip install flake8
 before_script:
   - "flake8 ."
-script: py.test tests
+script:
+  - py.test --cov=bearychat tests/
 notifications:
   webhooks:
     secure: "EpdiJbaTX9Ro5/UD6u+6XBZo675lgR5vv736DiFEXsry9VqbIVUVxl9cZsCQQaWT5qBfjgT64FQ/1jasQC8brPnTUwy8PrYiSGie0dtalu7iBhYmNRUpz5DUqigkC8oFqilwTK+nYjo3nV734R2NUxuwjBADOZLc1yi0T2jA3iKCCFCeDMKJhBp13yGrBPUY8lB1Ab1T0tE8knVBmCzrwUAwmVBAxWKghjy1YFTcCDR1Kw++GgaWwKqhZrzEPSPqwy6BjVTEoca8JAelTZs+vCuR18jQM1CqL4oVK4/Xq+c4ALWzunVExCA9zkPkAydcXkrF427couqqzwdsda2Lbsx1Rq8/oMLWPPAPeMfTuaO1fEttCksFR3mM9H1VZBfeqQ1MPQOqSW7O7tK+1nLEM2HqPOEddqSnUiQ6BKzLgXYWso34XwTufQN9bbBoTeRqhbVT7iXRGBRBVcDs9NVDD+cmQ2I7ft2VWj2wyAaFpH0PZX0JCb96pZYM8WyjYE2oQi8x62iDpXT9FGqRjJW0HcHWWGBXog9229OacJ2RjvqtdOMdnugBnk/Nydyac2RXjh5JuR2/N1Dtyh77xUhm3thYzPK4921mZ0REW8eD1MNNNm2gpPCRZLNeBT78derx+6ZUn8Rvbbrp7EE9uM1D9sTotdcFEbn0lzhyDva++X4="

@@ -44,8 +44,8 @@ class User(object):
         return self["conn"] == "connected"
 
     def is_normal(self):
-        return self["type"] == UserType.Normal and self[
-            "role"] != UserRole.Visitor
+        return (self["type"] == UserType.Normal and
+                self["role"] != UserRole.Visitor)
 
 
 class Channel(object):

@@ -61,7 +61,7 @@ Documentation
 
    guide
 
-   changelog
+   releases
 
 * :ref:`genindex`
 * :ref:`modindex`

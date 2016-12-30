@@ -1,0 +1,15 @@
+What's new in BearyChat.py 0.0.2
+================================
+
+Dec 30, 2016
+------------
+
+Incoming
+~~~~~~~~~~~~~~
+
+* Supports creating and sending message to `BearyChat Incoming <https://bearychat.com/integrations/incoming>`_.
+
+Real Time Message
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* Supports creating real time message.

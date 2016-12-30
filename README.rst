@@ -1,3 +1,4 @@
+========================
 Python SDK for BearyChat
 ========================
 
@@ -271,6 +272,6 @@ License
 MIT
 
 
-.. |Build Status| image:: https://travis-ci.org/bearyinnovative/pybearychat.svg
+.. |Build Status| image:: https://travis-ci.org/bearyinnovative/bearychat.py.svg
    :target: https://travis-ci.org/bearyinnovative/bearychat.py
 .. |Development Status| image:: https://img.shields.io/badge/status-WIP-yellow.svg?style=flat-square

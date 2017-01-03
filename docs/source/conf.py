@@ -146,3 +146,6 @@ texinfo_documents = [
     (master_doc, 'bearychatpy', 'bearychat.py Documentation', author,
      'bearychatpy', 'One line description of project.', 'Miscellaneous'),
 ]
+
+locale_dirs = ['locale/']
+gettext_compact = False

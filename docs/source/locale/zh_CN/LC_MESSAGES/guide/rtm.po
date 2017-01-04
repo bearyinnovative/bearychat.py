@@ -3,8 +3,7 @@
 # This file is distributed under the same license as the bearychat.py
 # package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
-#
-#, fuzzy
+
 msgid ""
 msgstr ""
 "Project-Id-Version: bearychat.py 0.0.1\n"

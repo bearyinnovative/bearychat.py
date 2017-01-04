@@ -1,0 +1,46 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2016, Beary Innovative
+# This file is distributed under the same license as the bearychat.py
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
+
+msgid ""
+msgstr ""
+"Project-Id-Version: bearychat.py 0.0.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-01-03 09:51+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.3.4\n"
+
+#: ../../source/releases/v0.0.2.rst:2
+msgid "What's new in BearyChat.py 0.0.2"
+msgstr "BearyChat.py 0.0.2 更新说明"
+
+#: ../../source/releases/v0.0.2.rst:5
+msgid "Dec 30, 2016"
+msgstr "2016年12月30日"
+
+#: ../../source/releases/v0.0.2.rst:8
+msgid "Incoming"
+msgstr ""
+
+#: ../../source/releases/v0.0.2.rst:10
+msgid ""
+"Supports creating and sending message to `BearyChat Incoming "
+"<https://bearychat.com/integrations/incoming>`_."
+msgstr "支持创建和发送消息至 `BearyChat Incoming "
+"<https://bearychat.com/integrations/incoming>`_."
+
+#: ../../source/releases/v0.0.2.rst:13
+msgid "Real Time Message"
+msgstr ""
+
+#: ../../source/releases/v0.0.2.rst:15
+msgid "Supports creating real time message."
+msgstr "支持创建 real time message"
+

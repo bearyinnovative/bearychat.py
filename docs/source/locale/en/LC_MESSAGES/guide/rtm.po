@@ -1,0 +1,76 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2016, Beary Innovative
+# This file is distributed under the same license as the bearychat.py
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
+
+msgid ""
+msgstr ""
+"Project-Id-Version: bearychat.py 0.0.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-01-03 09:51+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.3.4\n"
+
+#: ../../source/guide/rtm.rst:2
+msgid "Real Time Message"
+msgstr ""
+
+#: ../../source/guide/rtm.rst:5
+msgid "RTM Message"
+msgstr ""
+
+#: ../../source/guide/rtm.rst:7
+msgid "Provides handful helpers for rtm message parsing."
+msgstr ""
+
+#: ../../source/guide/rtm.rst:10
+msgid "RTM Loop"
+msgstr ""
+
+#: ../../source/guide/rtm.rst:12
+msgid ""
+"To achive more flexible usage, BearyChat.py won't provide any "
+"implementations for rtm.loop. You can use examples/rtm_loop below as "
+"implementation reference."
+msgstr ""
+
+#: ../../source/guide/rtm.rst:14
+msgid "Basically, rtm.loop contains 3 stages:"
+msgstr ""
+
+#: ../../source/guide/rtm.rst:16
+msgid ""
+"rtm.start: Use rtm token to authenticate user and open a websocket "
+"connection."
+msgstr ""
+
+#: ../../source/guide/rtm.rst:17
+msgid ""
+"ping: Keep sending type=ping message to server after connected. Pinging "
+"interval with 5000ms is suggested."
+msgstr ""
+
+#: ../../source/guide/rtm.rst:18
+msgid ""
+"loop: Subscribe to websocket's message event and consume the message "
+"comes from the server. You can use RTMMessage for message parsing."
+msgstr ""
+
+#: ../../source/guide/rtm.rst:21
+msgid "Examples"
+msgstr ""
+
+#: ../../source/guide/rtm.rst:23
+msgid "Here is a sample rtm loop implementation::"
+msgstr ""
+
+#: ../../source/guide/rtm.rst:187
+msgid "And Here is the rtm loop above working sample::"
+msgstr ""
+

@@ -2,6 +2,7 @@
 Python SDK for BearyChat
 ========================
 
+|@BearyChat|
 |Build Status|
 |Development Status|
 
@@ -25,7 +26,7 @@ or for development:
 ::
 
     $ git clone https://github.com/bearyinnovative/bearychat.py.git
-    $ cd bearychat.py 
+    $ cd bearychat.py
     $ python setup.py install
 
 Examples
@@ -272,6 +273,8 @@ License
 MIT
 
 
+.. |@BearyChat| image:: http://openapi.beary.chat/badge.svg
+   :target: http://openapi.beary.chat/join
 .. |Build Status| image:: https://travis-ci.org/bearyinnovative/bearychat.py.svg
    :target: https://travis-ci.org/bearyinnovative/bearychat.py
 .. |Development Status| image:: https://img.shields.io/badge/status-WIP-yellow.svg?style=flat-square

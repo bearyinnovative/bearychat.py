@@ -11,6 +11,7 @@ class RTMResponse(object):
         resp(requests.Response): HTTP response object
         data(dict): the received data
     """
+
     def __init__(self, http_resp):
         self.resp = http_resp
         try:
@@ -37,6 +38,7 @@ class RTMClient(object):
         user(RTMUser): service of current user
         channel(RTMChannel): service of current channel
     """
+
     def __init__(self, token, api_base="https://rtm.bearychat.com"):
         """
         Args:

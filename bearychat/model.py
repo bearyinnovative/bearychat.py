@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 
-class Team(dict):
+class Team(object):
     def __init__(self, data):
         if not isinstance(data, dict):
             raise TypeError

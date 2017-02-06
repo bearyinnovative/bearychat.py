@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 from requests import Request, Session
 from .rtm_client_service import RTMChannel, RTMCurrentTeam, RTMUser
-from .model import User
 
 
 class RTMResponse(object):
@@ -61,7 +60,7 @@ class RTMClient(object):
         if resp.is_fail() or "result" not in resp.data:
             return None
         return {
-            "user": User(resp.data["result"]["user"]),
+            "user": resp.data["result"]["user"],
             "ws_host": resp.data["result"]["ws_host"]
         }
 

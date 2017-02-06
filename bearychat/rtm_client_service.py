@@ -1,6 +1,5 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-from .model import Team, Channel, User
 
 
 class RTMService(object):
@@ -24,7 +23,7 @@ class RTMCurrentTeam(RTMService):
         resp = self._rtm_client.get("v1/current_team.info")
         if resp.is_fail():
             return None
-        return Team(resp.data["result"])
+        return resp.data["result"]
 
     def members(self):
         """Gets members of current team
@@ -37,7 +36,7 @@ class RTMCurrentTeam(RTMService):
             return None
         members = []
         for member in resp.data["result"]:
-            members.append(User(member))
+            members.append(member)
         return members
 
     def channels(self):
@@ -51,7 +50,7 @@ class RTMCurrentTeam(RTMService):
             return None
         channels = []
         for channel in resp.data["result"]:
-            channels.append(Channel(channel))
+            channels.append(channel)
         return channels
 
 
@@ -68,7 +67,7 @@ class RTMUser(RTMService):
         resp = self._rtm_client.get("v1/user.info?user_id={0}".format(user_id))
         if resp.is_fail():
             return None
-        return User(resp.data["result"])
+        return resp.data["result"]
 
 
 class RTMChannel(RTMService):
@@ -85,4 +84,4 @@ class RTMChannel(RTMService):
             channel_id))
         if resp.is_fail():
             return None
-        return Channel(resp.data["result"])
+        return resp.data["result"]

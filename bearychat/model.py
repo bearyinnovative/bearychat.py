@@ -1,18 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-
-class Team(object):
-    def __init__(self, data):
-        if not isinstance(data, dict):
-            raise TypeError
-        self._data = data
-
-    def __setitem__(self, name, value):
-        self._data[name] = value
-
-    def __getitem__(self, name):
-        return self._data[name]
+from .utils import accepts
 
 
 class UserType(object):
@@ -28,34 +17,12 @@ class UserRole(object):
     Visitor = "visitor"
 
 
-class User(object):
-    def __init__(self, data):
-        if not isinstance(data, dict):
-            raise TypeError
-        self._data = data
-
-    def __setitem__(self, name, value):
-        self._data[name] = value
-
-    def __getitem__(self, name):
-        return self._data[name]
-
-    def is_online(self):
-        return self["conn"] == "connected"
-
-    def is_normal(self):
-        return (self["type"] == UserType.Normal and
-                self["role"] != UserRole.Visitor)
+@accepts(dict)
+def is_user_online(user):
+    return user["conn"] == "connected"
 
 
-class Channel(object):
-    def __init__(self, data):
-        if not isinstance(data, dict):
-            raise TypeError
-        self._data = data
-
-    def __setitem__(self, name, value):
-        self._data[name] = value
-
-    def __getitem__(self, name):
-        return self._data[name]
+@accepts(dict)
+def is_user_normal(user):
+    return (user["type"] == UserType.Normal and
+            user["role"] != UserRole.Visitor)

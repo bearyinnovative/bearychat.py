@@ -12,12 +12,6 @@ def test_is_user_online():
 
     with pytest.raises(KeyError):
         is_user_online({})
-    with pytest.raises(AssertionError):
-        is_user_online(42)
-    with pytest.raises(AssertionError):
-        is_user_online(True)
-    with pytest.raises(AssertionError):
-        is_user_online("foo")
 
 
 def test_is_user_normal():
@@ -31,9 +25,3 @@ def test_is_user_normal():
                            "role": UserRole.Normal}) is True
     with pytest.raises(KeyError):
         is_user_normal({})
-    with pytest.raises(AssertionError):
-        is_user_normal(42)
-    with pytest.raises(AssertionError):
-        is_user_normal(True)
-    with pytest.raises(AssertionError):
-        is_user_normal("foo")

@@ -1,8 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-from .utils import accepts
-
 
 class UserType(object):
     Normal = "normal"
@@ -17,12 +15,12 @@ class UserRole(object):
     Visitor = "visitor"
 
 
-@accepts(dict)
 def is_user_online(user):
+    # type: (Dict) -> bool
     return user["conn"] == "connected"
 
 
-@accepts(dict)
 def is_user_normal(user):
+    # type: (Dict) -> bool
     return (user["type"] == UserType.Normal and
             user["role"] != UserRole.Visitor)

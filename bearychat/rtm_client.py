@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 from requests import Request, Session
 from .rtm_client_service import RTMChannel, RTMCurrentTeam, RTMUser
-from .model import User
 
 
 class RTMResponse(object):
@@ -12,6 +11,7 @@ class RTMResponse(object):
         resp(requests.Response): HTTP response object
         data(dict): the received data
     """
+
     def __init__(self, http_resp):
         self.resp = http_resp
         try:
@@ -38,6 +38,7 @@ class RTMClient(object):
         user(RTMUser): service of current user
         channel(RTMChannel): service of current channel
     """
+
     def __init__(self, token, api_base="https://rtm.bearychat.com"):
         """
         Args:
@@ -61,7 +62,7 @@ class RTMClient(object):
         if resp.is_fail() or "result" not in resp.data:
             return None
         return {
-            "user": User(resp.data["result"]["user"]),
+            "user": resp.data["result"]["user"],
             "ws_host": resp.data["result"]["ws_host"]
         }
 

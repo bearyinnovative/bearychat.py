@@ -1,5 +1,3 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
 from requests import Request, Session
 from .rtm_client_service import RTMChannel, RTMCurrentTeam, RTMUser
 
@@ -24,7 +22,7 @@ class RTMResponse(object):
         Returns:
             bool: True if the response is valid
         """
-        return self.resp.status_code == 200 and self.data.get("code") == 0
+        return self.resp.status_code == 200 and self.data.get('code') == 0
 
     def is_fail(self):
         return not self.is_ok()
@@ -58,12 +56,17 @@ class RTMClient(object):
             None if request failed,
             else a dict containing "user"(User) and "ws_host"
         """
-        resp = self.post("start")
-        if resp.is_fail() or "result" not in resp.data:
+        resp = self.post('start')
+
+        if resp.is_fail():
             return None
+        if 'result' not in resp.data:
+            return None
+
+        result = resp.data['result']
         return {
-            "user": resp.data["result"]["user"],
-            "ws_host": resp.data["result"]["ws_host"]
+            'user': result['user'],
+            'ws_host': result['ws_host'],
         }
 
     def do(self,
@@ -89,7 +92,7 @@ class RTMClient(object):
         uri = "{0}/{1}".format(self._api_base, resource)
         if not params:
             params = {}
-        params.update({"token": self._token})
+        params.update({'token': self._token})
 
         req = Request(
             method=method,
@@ -110,7 +113,7 @@ class RTMClient(object):
         Returns:
             RTMResponse
         """
-        return self.do(resource, "GET", params=params, headers=headers)
+        return self.do(resource, 'GET', params=params, headers=headers)
 
     def post(self, resource, data=None, json=None):
         """Sends a POST request
@@ -118,4 +121,4 @@ class RTMClient(object):
         Returns:
             RTMResponse
         """
-        return self.do(resource, "POST", data=data, json=json)
+        return self.do(resource, 'POST', data=data, json=json)

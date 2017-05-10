@@ -1,25 +1,18 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
-
-
 class RTMServiceError(RuntimeError):
+
     def __init__(self, message, err_data):
         super(RTMServiceError, self).__init__(message)
         self.err_data = err_data
 
 
 class RTMService(object):
-    """service of Real Time Message
-    """
+    """service of Real Time Message"""
 
     def __init__(self, rtm_client):
         self._rtm_client = rtm_client
 
 
 class RTMCurrentTeam(RTMService):
-    """
-    """
-
     def info(self):
         """Gets current team infomation
 
@@ -29,11 +22,13 @@ class RTMCurrentTeam(RTMService):
         Throws:
             RTMServiceError when request failed
         """
-        resp = self._rtm_client.get("v1/current_team.info")
+        resp = self._rtm_client.get('v1/current_team.info')
         if resp.is_fail():
-            raise RTMServiceError("Failed to get current team infomation",
-                                  resp)
-        return resp.data["result"]
+            raise RTMServiceError(
+                'Failed to get current team infomation',
+                resp
+            )
+        return resp.data['result']
 
     def members(self):
         """Gets members of current team
@@ -44,14 +39,13 @@ class RTMCurrentTeam(RTMService):
         Throws:
             RTMServiceError when request failed
         """
-        resp = self._rtm_client.get("v1/current_team.members?all=true")
+        resp = self._rtm_client.get('v1/current_team.members?all=true')
         if resp.is_fail():
-            raise RTMServiceError("Failed to get members of current team",
-                                  resp)
-        members = []
-        for member in resp.data["result"]:
-            members.append(member)
-        return members
+            raise RTMServiceError(
+                'Failed to get members of current team',
+                resp
+            )
+        return resp.data['result']
 
     def channels(self):
         """Gets channels of current team
@@ -62,14 +56,13 @@ class RTMCurrentTeam(RTMService):
         Throws:
             RTMServiceError when request failed
         """
-        resp = self._rtm_client.get("v1/current_team.channels")
+        resp = self._rtm_client.get('v1/current_team.channels')
         if resp.is_fail():
-            raise RTMServiceError("Failed to get channels of current team",
-                                  resp)
-        channels = []
-        for channel in resp.data["result"]:
-            channels.append(channel)
-        return channels
+            raise RTMServiceError(
+                'Failed to get channels of current team',
+                resp
+            )
+        return resp.data['result']
 
 
 class RTMUser(RTMService):
@@ -85,10 +78,11 @@ class RTMUser(RTMService):
         Throws:
             RTMServiceError when request failed
         """
-        resp = self._rtm_client.get("v1/user.info?user_id={0}".format(user_id))
+        resp = self._rtm_client.get('v1/user.info?user_id={}'.format(user_id))
         if resp.is_fail():
-            raise RTMServiceError("Failed to get user information", resp)
-        return resp.data["result"]
+            raise RTMServiceError('Failed to get user information', resp)
+
+        return resp.data['result']
 
 
 class RTMChannel(RTMService):
@@ -104,8 +98,9 @@ class RTMChannel(RTMService):
         Throws:
             RTMServiceError when request failed
         """
-        resp = self._rtm_client.get("v1/channel.info?channel_id={0}".format(
-            channel_id))
+        resource = 'v1/channel.info?channel_id={}'.format(channel_id)
+        resp = self._rtm_client.get(resource)
         if resp.is_fail():
             raise RTMServiceError("Failed to get channel information", resp)
-        return resp.data["result"]
+
+        return resp.data['result']

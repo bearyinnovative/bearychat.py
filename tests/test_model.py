@@ -1,5 +1,3 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
 import pytest
 from bearychat.model import UserType, UserRole, is_user_online, is_user_normal
 

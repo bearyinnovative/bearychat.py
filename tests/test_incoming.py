@@ -1,5 +1,3 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
 import pytest
 from bearychat.incoming import validate
 
@@ -13,7 +11,7 @@ def test_validate_data_type(new_incoming):
     ts = [list, str, int, float, bool]
     for t in ts:
         incoming = t()
-        with pytest.raises(ValueError, message="data should be dict"):
+        with pytest.raises(Exception):
             validate(incoming)
 
 
@@ -21,8 +19,7 @@ def test_validate_markdown_field(new_incoming):
     ts = [list, str, int, float, dict]
     for t in ts:
         new_incoming["markdown"] = t()
-        with pytest.raises(
-                ValueError, message="markdown field should be bool"):
+        with pytest.raises(Exception):
             validate(new_incoming)
 
     new_incoming["markdown"] = True
@@ -33,9 +30,7 @@ def test_validate_text_field(new_incoming):
     ts = [list, int, float, dict, bool, str]
     for t in ts:
         new_incoming["text"] = t()
-        with pytest.raises(
-                ValueError,
-                message="text field is required and should not be empty"):
+        with pytest.raises(Exception):
             validate(new_incoming)
     new_incoming["text"] = "testing"
     assert validate(new_incoming) is True
@@ -45,8 +40,7 @@ def test_validate_attachments(new_incoming):
     ts = [int, float, dict, bool, str]
     for t in ts:
         new_incoming["attachments"] = t()
-        with pytest.raises(
-                ValueError, message="attachments field should be list"):
+        with pytest.raises(Exception):
             validate(new_incoming)
     new_incoming["attachments"] = [{
         "color": "#ffa500",
@@ -55,8 +49,7 @@ def test_validate_attachments(new_incoming):
         }]
     }]
 
-    with pytest.raises(
-            ValueError, message="text or title is required in attachment"):
+    with pytest.raises(Exception):
         validate(new_incoming)
 
     new_incoming["attachments"] = [{

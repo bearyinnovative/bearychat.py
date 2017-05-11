@@ -1,36 +1,29 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
 import json
 
 
 class RTMMessageType(object):
-    """types of Message of Real Time Message
-    """
-    Unknown = "unknown"
-    Ping = "ping"
-    Pong = "pong"
-    Reply = "reply"
-    Ok = "ok"
-    P2PMessage = "message"
-    P2PTyping = "typing"
-    ChannelMessage = "channel_message"
-    ChannelTyping = "channel_typing"
-    UpdateUserConnection = "update_user_connection"
+    """RTM Message constants"""
+
+    Unknown = 'unknown'
+    Ping = 'ping'
+    Pong = 'pong'
+    Reply = 'reply'
+    Ok = 'ok'
+    P2PMessage = 'message'
+    P2PTyping = 'typing'
+    ChannelMessage = 'channel_message'
+    ChannelTyping = 'channel_typing'
+    UpdateUserConnection = 'update_user_connection'
 
 
 class RTMMessage(object):
-    """Message of Real Time Message
-    """
-    def __init__(self, data):
-        """
-        Args:
-            data(dict): message content
+    """RTM Message
 
-        Raises:
-            TypeError: if data is not dict
-        """
-        if not isinstance(data, dict):
-            raise TypeError
+    Args:
+        data(dict): message dict
+    """
+
+    def __init__(self, data):
         self._data = data
 
     def __setitem__(self, name, value):
@@ -51,13 +44,13 @@ class RTMMessage(object):
         Returns:
             RTMMessage
         """
-        data = {"text": text, "vchannel_id": self["vchannel_id"]}
+        data = {'text': text, 'vchannel_id': self['vchannel_id']}
         if self.is_p2p():
-            data["type"] = RTMMessageType.P2PMessage
-            data["to_uid"] = self["uid"]
+            data['type'] = RTMMessageType.P2PMessage
+            data['to_uid'] = self['uid']
         else:
-            data["type"] = RTMMessageType.ChannelMessage
-            data["channel_id"] = self["channel_id"]
+            data['type'] = RTMMessageType.ChannelMessage
+            data['channel_id'] = self['channel_id']
         return RTMMessage(data)
 
     def refer(self, text):
@@ -70,7 +63,7 @@ class RTMMessage(object):
             RTMMessage
         """
         data = self.reply(text)
-        data["refer_key"] = self["key"]
+        data['refer_key'] = self['key']
         return data
 
     def is_p2p(self):
@@ -78,18 +71,16 @@ class RTMMessage(object):
         Returns:
             True if current message is p2p message
         """
-        t = self["type"]
-        return (t == RTMMessageType.P2PMessage or
-                t == RTMMessageType.P2PTyping)
+        return self['type'] in (RTMMessageType.P2PMessage,
+                                RTMMessageType.P2PTyping)
 
     def is_chat_message(self):
         """
         Returns:
             True if current message is chatting message
         """
-        t = self["type"]
-        return (t == RTMMessageType.P2PMessage or
-                t == RTMMessageType.ChannelMessage)
+        return self['type'] in (RTMMessageType.P2PMessage,
+                                RTMMessageType.ChannelMessage)
 
     def is_from(self, user):
         """Checks if current message is sent by user
@@ -100,7 +91,7 @@ class RTMMessage(object):
         Returns:
             True if current message is sent by the user
         """
-        return self["uid"] == user["id"]
+        return self['id'] == user.get('id')
 
     def to_json(self):
         """Transfers current message to json

@@ -14,7 +14,7 @@ setup(
     url="https://github.com/bearyinnovative/bearychat.py",
     description="SDK for BearyChat",
     long_description=long_description,
-    packages=find_packages(exclude=["docs"]),
+    packages=find_packages(exclude=["docs", "tests", "scripts"]),
     platforms="any",
     install_requires=[
         "requests>=2.8.0",

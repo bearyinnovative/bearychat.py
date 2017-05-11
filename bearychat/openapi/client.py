@@ -15,6 +15,8 @@ else:
 
 import requests
 
+from bearychat.openapi._api import get_api, format_method
+
 
 class RequestFailedError(ValueError):
     """Request to OpenAPI failed. Caller can use `e.resp` to access
@@ -71,6 +73,44 @@ class Requester(object):
         return rv
 
 
+# Oki-dokie-Loki here come the magic pony
+class _Service(object):
+
+    def __init__(self, base, client):
+        self._base = base
+        self._client = client
+
+    def _build_requester(self, name):
+        api_method = format_method(self._base, name)
+        method_spec = get_api(self._base, name)
+        request_method = method_spec['method']
+        token = self._client.token
+        need_auth = method_spec['authentication'] is not False
+
+        requester = self._client.requester
+
+        def _call(params=None, *args, **kwargs):
+            if params is None:
+                params = {}
+            if need_auth:
+                params['token'] = token
+
+            return requester.request(
+                request_method,
+                api_method,
+                params=params,
+                *args,
+                **kwargs
+            )
+        return _call
+
+    def __getattr__(self, name):
+        return self._build_requester(name)
+
+    def __call__(self, *args, **kwargs):
+        return self._build_requester(None)(*args, **kwargs)
+
+
 class Client(object):
     """OpenAPI request client
 
@@ -90,3 +130,15 @@ class Client(object):
     def __init__(self, token, base_url=None):
         self.token = token
         self.requester = Requester(base_url or 'https://api.bearychat.com/v1')
+
+        self.meta = _Service('meta', self)
+        self.team = _Service('team', self)
+        self.user = _Service('user', self)
+        self.vchannel = _Service('vchannel', self)
+        self.channel = _Service('channel', self)
+        self.session_channel = _Service('session_channel', self)
+        self.p2p = _Service('p2p', self)
+        self.message = _Service('message', self)
+        self.sticker = _Service('sticker', self)
+        self.emoji = _Service('emoji', self)
+        self.rtm = _Service('rtm', self)

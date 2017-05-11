@@ -15,7 +15,31 @@ else:
 
 import requests
 
-from bearychat.openapi._api import get_api, format_method
+from bearychat.openapi._api import apis
+
+
+def format_method(service_name, method_name):
+    if method_name is None:
+        return service_name
+    return '{}.{}'.format(service_name, method_name)
+
+
+def get_api(service_name, method_name):
+    service = apis.get(service_name)
+    if service is None:
+        expected_method = format_method(service_name, method_name)
+        raise RuntimeError('unknown method: {}'.format(expected_method))
+
+    if method_name is None:
+        method = service
+    else:
+        method = service.get(method_name)
+
+    if method is None or 'method' not in method:
+        expected_method = format_method(service_name, method_name)
+        raise RuntimeError('unknown method: {}'.format(expected_method))
+
+    return method
 
 
 class RequestFailedError(ValueError):

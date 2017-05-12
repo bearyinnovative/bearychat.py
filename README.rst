@@ -269,6 +269,16 @@ Examples
             continue
         loop.send(message.refer("Pardon?"))
 
+Development
+-----------
+
+OpenAPI Client Building
+~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code:: shell
+
+  $ ./scripts/gen_api.py > bearychat/openapi/_api.py
+
 
 License
 -------
@@ -281,5 +291,5 @@ MIT
 .. |Build Status| image:: https://travis-ci.org/bearyinnovative/bearychat.py.svg
    :target: https://travis-ci.org/bearyinnovative/bearychat.py
 .. |Development Status| image:: https://img.shields.io/badge/status-WIP-yellow.svg?style=flat-square
-.. |Documentation Status| image:: https://readthedocs.org/projects/bearychat/badge/?version=latest 
+.. |Documentation Status| image:: https://readthedocs.org/projects/bearychat/badge/?version=latest
    :target: http://bearychat.readthedocs.io/en/latest/?badge=latest

@@ -125,6 +125,9 @@ class _Service(object):
 
         requester = self._client.requester
 
+        # TODO(hbc):
+        #  - wraps method name
+        #  - memoize method (stubs)
         def _call(params=None, *args, **kwargs):
             if params is None:
                 params = {}

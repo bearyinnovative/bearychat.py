@@ -42,6 +42,18 @@ def get_api(service_name, method_name):
     return method
 
 
+def get_methods(service_name):
+    service = apis.get(service_name)
+    if service is None:
+        raise RuntimeError('unknown service: {}'.format(service_name))
+
+    if 'method' in service:
+        # only one level
+        return [service_name]
+
+    return list(service.keys())
+
+
 class RequestFailedError(ValueError):
     """Request to OpenAPI failed. Caller can use `e.resp` to access
     the response instance.
@@ -133,6 +145,9 @@ class _Service(object):
 
     def __call__(self, *args, **kwargs):
         return self._build_requester(None)(*args, **kwargs)
+
+    def __dir__(self):
+        return get_methods(self._base)
 
 
 class Client(object):

@@ -100,7 +100,7 @@ class Requester(object):
 
         try:
             rv = resp.json()
-        except ValueError as e:
+        except ValueError:
             raise RequestFailedError(resp, 'not a json body')
 
         if not resp.ok:

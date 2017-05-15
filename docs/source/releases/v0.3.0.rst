@@ -1,0 +1,10 @@
+What's new in BearyChat.py 0.3.0
+================================
+
+May 15, 2017
+------------
+
+OpenAPI
+~~~~~~~~
+
+* Adds `OpenAPI <https://github.com/bearyinnovative/openapi>`_ support.

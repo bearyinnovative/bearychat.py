@@ -1,0 +1,10 @@
+What's new in BearyChat.py 0.4.0
+================================
+
+June 2, 2017
+------------
+
+OpenAPI
+~~~~~~~~
+
+* Updates OpenAPI to `3f86e39426 <https://github.com/bearyinnovative/OpenAPI/commit/3f86e394269c6bf82f508307aac088e1bc1d8bb3>`_.

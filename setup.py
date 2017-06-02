@@ -9,7 +9,7 @@ with open(join(CURRENT_DIR, "README.rst")) as long_description_file:
 
 setup(
     name="bearychat",
-    version="0.3.0",
+    version="0.4.0",
     author="bearyinnovative",
     url="https://github.com/bearyinnovative/bearychat.py",
     description="SDK for BearyChat",

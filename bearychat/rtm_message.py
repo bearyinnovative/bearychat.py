@@ -91,7 +91,7 @@ class RTMMessage(object):
         Returns:
             True if current message is sent by the user
         """
-        return self['id'] == user.get('id')
+        return self['uid'] == user.get('id')
 
     def to_json(self):
         """Transfers current message to json

@@ -1,0 +1,11 @@
+What's new in BearyChat.py 0.4.1
+================================
+
+June 22, 2017
+------------
+
+RTM
+~~~
+
+* Adds required ssl options in example, thanks @itchenyi #37
+* Fixes mis-reference uid field #36

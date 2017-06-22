@@ -2,10 +2,16 @@ import sys
 import time
 import json
 import threading
+import ssl
 
 import websocket
-
 from bearychat import RTMMessage, RTMMessageType
+
+
+# reference: https://github.com/websocket-client/websocket-client/issues/227
+ssl_defaults = ssl.get_default_verify_paths()
+sslopt_with_ca_certs = {'ca_certs': ssl_defaults.cafile}
+
 
 if sys.version_info > (3, ):
     from queue import Queue
@@ -37,7 +43,9 @@ class RTMLoop(object):
             on_message=self.on_message,
             on_close=self.on_close,
             on_error=self.on_error)
-        self._worker = threading.Thread(target=self._ws.run_forever)
+        self._worker = threading.Thread(
+            target=self._ws.run_forever,
+            kwargs={'sslopt': sslopt_with_ca_certs})
 
     def on_open(self, ws):
         """Websocket on_open event handler"""

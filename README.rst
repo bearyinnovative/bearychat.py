@@ -82,6 +82,12 @@ OpenAPI Client Building
   $ ./scripts/gen_api.py > bearychat/openapi/_api.py
 
 
+Using Other Libraries
+---------------------
+
+- `aiobearychat <https://github.com/mozillazg/aiobearychat>`_ By `@mozillazg <https://github.com/mozillazg>`_
+
+
 License
 -------
 

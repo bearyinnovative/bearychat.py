@@ -87,6 +87,11 @@ Using Other Libraries
 
 - `aiobearychat <https://github.com/mozillazg/aiobearychat>`_ By `@mozillazg <https://github.com/mozillazg>`_
 
+User Demos
+---------------------
+
+- `Websocket sample <https://gist.github.com/ficapy/8948348d4b8ea2adb9e3e4e5237cb0a3>`_ By `@ficapy <https://github.com/ficapy>`_
+
 
 License
 -------

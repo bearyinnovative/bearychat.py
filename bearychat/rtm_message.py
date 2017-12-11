@@ -1,4 +1,5 @@
 import json
+import re
 
 
 class RTMMessageType(object):
@@ -16,6 +17,9 @@ class RTMMessageType(object):
     UpdateUserConnection = 'update_user_connection'
 
 
+mention_regex = re.compile(r'@<=(=[A-Za-z0-9]+)=> ')
+
+
 class RTMMessage(object):
     """RTM Message
 
@@ -25,6 +29,8 @@ class RTMMessage(object):
 
     def __init__(self, data):
         self._data = data
+        self.mention_user_ids = set()
+        self.parse_mention_user_ids()
 
     def __setitem__(self, name, value):
         self._data[name] = value
@@ -34,6 +40,12 @@ class RTMMessage(object):
 
     def __contains__(self, name):
         return name in self._data
+
+    def parse_mention_user_ids(self):
+        if len(self['text']) == 0:
+            return
+
+        self.mention_user_ids = set(mention_regex.findall(self['text']))
 
     def reply(self, text):
         """Replys a text message
@@ -81,6 +93,17 @@ class RTMMessage(object):
         """
         return self['type'] in (RTMMessageType.P2PMessage,
                                 RTMMessageType.ChannelMessage)
+
+    def is_mention_user(self, user):
+        """Check if current message mentions user
+
+        Args:
+            user(User)
+
+        Returns:
+            True if message mentions user
+        """
+        return user.get('id') in self.mention_user_ids
 
     def is_from(self, user):
         """Checks if current message is sent by user

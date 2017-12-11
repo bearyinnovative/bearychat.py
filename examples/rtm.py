@@ -31,7 +31,7 @@ def main():
         try:
             print("rtm loop received {0} from {1}".format(message["text"],
                                                           message["uid"]))
-        except:
+        except Exception:
             continue
 
         if message.is_from(user):

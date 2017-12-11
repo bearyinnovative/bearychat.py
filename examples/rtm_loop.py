@@ -63,7 +63,7 @@ class RTMLoop(object):
         """
         try:
             data = json.loads(message)
-        except:
+        except Exception:
             self._set_error(message, "decode message failed")
         else:
             self._inbox.put(RTMMessage(data))
@@ -146,7 +146,7 @@ class RTMLoop(object):
         try:
             message = self._inbox.get(block=block, timeout=timeout)
             return message
-        except:
+        except Exception:
             return None
 
     def get_error(self, block=False, timeout=None):
@@ -163,5 +163,5 @@ class RTMLoop(object):
         try:
             error = self._errors.get(block=block, timeout=timeout)
             return error
-        except:
+        except Exception:
             return None

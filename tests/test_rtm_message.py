@@ -1,4 +1,3 @@
-import pytest
 from bearychat.rtm_message import RTMMessage
 
 

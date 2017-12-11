@@ -14,7 +14,7 @@ class RTMResponse(object):
         self.resp = http_resp
         try:
             self.data = self.resp.json()
-        except:
+        except Exception:
             self.data = {}
 
     def is_ok(self):

@@ -17,6 +17,9 @@ class RTMMessageType(object):
     UpdateUserConnection = 'update_user_connection'
 
 
+mention_regex = re.compile(r'@<=(=[A-Za-z0-9]+)=> ')
+
+
 class RTMMessage(object):
     """RTM Message
 
@@ -42,8 +45,7 @@ class RTMMessage(object):
         if len(self['text']) == 0:
             return
 
-        r = re.compile(r'@<=(=[A-Za-z0-9]+)=> ')
-        self.mention_user_ids = set(r.findall(self['text']))
+        self.mention_user_ids = set(mention_regex.findall(self['text']))
 
     def reply(self, text):
         """Replys a text message

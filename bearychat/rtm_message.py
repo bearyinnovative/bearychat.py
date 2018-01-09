@@ -42,6 +42,9 @@ class RTMMessage(object):
         return name in self._data
 
     def parse_mention_user_ids(self):
+        if not self.is_chat_message():
+            return
+
         if len(self['text']) == 0:
             return
 

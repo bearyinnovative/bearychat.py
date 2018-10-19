@@ -181,6 +181,7 @@ class Client(object):
         self.session_channel = _Service('session_channel', self)
         self.p2p = _Service('p2p', self)
         self.message = _Service('message', self)
+        self.message_pin = _Service('message_pin', self)
         self.sticker = _Service('sticker', self)
         self.emoji = _Service('emoji', self)
         self.rtm = _Service('rtm', self)

@@ -40,16 +40,17 @@ def validate(data):
     return True
 
 
-def send(url, data):
+def send(url, data, timeout=5):
     """Sends an incoming message
 
     Args:
         url(str): the incoming hook url
         data(dict): the sending data
+        timeout(float): (optional) connection read timeout, default 5 seconds
 
     Returns:
         requests.Response
     """
     validate(data)
 
-    return requests.post(url, json=data)
+    return requests.post(url, json=data, timeout=timeout)
